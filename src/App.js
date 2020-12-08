@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import data from './utils/data.json' 
+import { useState } from 'react';
+import Landing from './component/Landing';
+import Catalog from './component/Catalog';
 
-function App() {
+function App() { 
+
+  const [info] = useState(data)
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div id='main-links' className="App">
+        <Link to='/'>Home</Link>
+        <Link to='/catalog'>Catalog</Link>
+        <hr/>
+      </div>
+      <Route exact path='/' render={()=> <Landing state={info}/>} />
+      <Route exact path='/catalog' render={() => <Catalog state={info} />} />
+    </Router>
   );
 }
 
