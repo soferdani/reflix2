@@ -1,8 +1,8 @@
 
-function MoveDetail(props) {
+function MovieDetail(props) {
     return (
         <div>this is MoveDetail</div>
     )
 }
 
-export default MoveDetail
+export default MovieDetail
