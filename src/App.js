@@ -10,7 +10,15 @@ import Catalog from './component/Catalog';
 function App() { 
 
   const [info] = useState(data)
-  
+  const [user, setUser] = useState('')
+  const userEntered = (userName) => {
+    setUser(userName) // mube need to fix 
+  }
+
+  const handelMovieRent = (userName, movie) => {
+
+  } 
+
   return (
     <Router>
       <div className="App">
@@ -22,8 +30,12 @@ function App() {
           <img id='logo' src={logo} alt='logo'/>
         </div>
       
-      <Route exact path='/' render={()=> <Landing state={info}/>} />
-      <Route exact path='/catalog' render={() => <Catalog state={info} />} />
+      <Route exact path='/' render={()=> <Landing userEntered={userEntered} state={info}/>} />
+        <Route path='/catalog/:userName'
+          render={({ match }) => <Catalog
+            match={match}
+            handelMovieRent={handelMovieRent}
+            state={info} />} />
       {/* {info.catalog.map(m=> {
         return (
           <Route exact path={`/movie/${m.id}`} render={({match})=> <MovieDetail match={match} movie={m} />} />
