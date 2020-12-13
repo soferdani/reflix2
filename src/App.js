@@ -9,15 +9,28 @@ import Catalog from './component/Catalog';
 
 function App() { 
 
-  const [info] = useState(data)
-  const [user, setUser] = useState('')
-  const userEntered = (userName) => {
-    setUser(userName) // mube need to fix 
+  const [info, setInfo] = useState(data)  
+
+  const userEntered = (userName) => {//TODO: make sure this is working
+    setInfo({ currentUser:userName})
   }
 
-  const handelMovieRent = (userName, movie) => {
+  const handelRent = (userName, movie) => {
+    const user = info.users.find(u => u.name === userName)
+    if (user.budget>= 5) {
+      if (user.rentedMovies.find(m => m.id === movie.id)) {
+        setInfo(user.rentedMovies.push(movie))
+        setInfo(user.budget-= 10)
 
-  } 
+
+        // user.rentedMovies.push(movie)
+        // user.budget -= 10
+      }
+    }
+  }
+
+
+
 
   return (
     <Router>
@@ -33,8 +46,9 @@ function App() {
       <Route exact path='/' render={()=> <Landing userEntered={userEntered} state={info}/>} />
         <Route path='/catalog/:userName'
           render={({ match }) => <Catalog
+            
             match={match}
-            handelMovieRent={handelMovieRent}
+            
             state={info} />} />
       {/* {info.catalog.map(m=> {
         return (

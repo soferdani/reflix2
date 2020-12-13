@@ -4,7 +4,7 @@ import '../styles/Catalog.css'
 function Catalog(props) {
     // console.log(props.state.users[0].budget);
 
-
+    console.log(props.match.params.userName);
 
     return (
         <div className="catalog">
