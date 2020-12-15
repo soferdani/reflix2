@@ -21,12 +21,24 @@ function App() {
       if (user.rentedMovies.find(m => m.id === movie.id)) {
         setInfo(user.rentedMovies.push(movie))
         setInfo(user.budget-= 10)
-
+        setInfo(user)
 
         // user.rentedMovies.push(movie)
         // user.budget -= 10
+      } else {
+        alert ('This movie is already in the renting list')
       }
+    } else {
+      alert('Not enough budget for renting this movie.')
     }
+  }
+
+  const handelRemove = (userName,movieId) => {
+    const user = info.users.find(u => u.name === userName);
+    const movieIndex = user.rentedMovies.findIndex(m => m.id == movieId);
+    user.rentedMovies.splice(movieIndex, 1);
+    user.budget += 3;
+    setInfo(user)
   }
 
 
@@ -46,10 +58,10 @@ function App() {
       <Route exact path='/' render={()=> <Landing userEntered={userEntered} state={info}/>} />
         <Route path='/catalog/:userName'
           render={({ match }) => <Catalog
-            
             match={match}
-            
-            state={info} />} />
+            state={info}
+            handelRemove={handelRemove}
+            handelRent={handelRent}/>} />
       {/* {info.catalog.map(m=> {
         return (
           <Route exact path={`/movie/${m.id}`} render={({match})=> <MovieDetail match={match} movie={m} />} />
