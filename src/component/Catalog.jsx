@@ -4,6 +4,9 @@ import '../styles/Catalog.css'
 
 
 
+
+
+
 function Catalog(props) {
 
     const currentUserName = props.match.params.userName

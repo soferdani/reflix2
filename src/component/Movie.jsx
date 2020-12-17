@@ -4,6 +4,7 @@ function Movie(props) {
     
 
 
+    
     return (
         <div className="movieBox">
             <span id='plus'>+</span><span id='minos'>-</span><h4 className='movieTitle'>{props.title}</h4>
