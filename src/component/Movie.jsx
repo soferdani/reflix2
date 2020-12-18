@@ -4,6 +4,8 @@ function Movie(props) {
     
 
 
+
+    
     
     return (
         <div className="movieBox">
