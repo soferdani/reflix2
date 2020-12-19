@@ -1,12 +1,6 @@
 import Movie from "./Movie";
 import '../styles/Catalog.css'
 
-
-
-
-
-
-
 function Catalog(props) {
 
     const currentUserName = props.match.params.userName
@@ -21,7 +15,6 @@ function Catalog(props) {
     
     const render
     
-
     return (
         <div className="catalog">
             <div className="catalog-header">
